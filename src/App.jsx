@@ -7,6 +7,8 @@ import {
   HandHeart,
   HeartHandshake,
   Leaf,
+  Mail,
+  Phone,
   ShieldCheck,
   X,
 } from 'lucide-react'
@@ -513,42 +515,6 @@ const sponsorshipSteps = [
 
 const sponsorshipJourney = ['Identifier', 'Écouter', 'Évaluer', 'Parrainer', 'Accompagner', 'Suivre', 'Autonomiser']
 
-function handleSponsorshipSubmit(event, selectedFormats, selectedFrequencies, selectedProfiles) {
-  event.preventDefault()
-
-  const formData = new FormData(event.currentTarget)
-  const message = [
-    `Nom et prénom : ${formData.get('name')}`,
-    `Pays de résidence : ${formData.get('country')}`,
-    `E-mail : ${formData.get('email')}`,
-    `Téléphone : ${formData.get('phone') || 'Non renseigné'}`,
-    `Forme(s) de parrainage souhaitée(s) : ${selectedFormats.length ? selectedFormats.join(', ') : 'À définir lors de l’échange'}`,
-    `Fréquence(s) envisagée(s) : ${selectedFrequencies.length ? selectedFrequencies.join(', ') : 'À échanger'}`,
-    `Type de parrain ou marraine : ${selectedProfiles.length ? selectedProfiles.join(', ') : 'À préciser'}`,
-    `Motivation : ${formData.get('motivation') || 'Non renseignée'}`,
-  ].join('\n')
-
-  const subject = encodeURIComponent('Demande d’information sur le parrainage')
-  const body = encodeURIComponent(message)
-  window.location.href = `mailto:passerelleresdavenir.asso@gmail.com?subject=${subject}&body=${body}`
-}
-
-function handleJoinSubmit(event) {
-  event.preventDefault()
-
-  const formData = new FormData(event.currentTarget)
-  const message = [
-    `Nom : ${formData.get('name')}`,
-    `E-mail : ${formData.get('email')}`,
-    `Je souhaite : ${formData.get('engagement')}`,
-    `Message : ${formData.get('message') || 'Aucun message'}`,
-  ].join('\n')
-  const subject = encodeURIComponent('Demande pour rejoindre Passerelles d’Avenir')
-  const body = encodeURIComponent(message)
-
-  window.location.href = `mailto:passerelleresdavenir.asso@gmail.com?subject=${subject}&body=${body}`
-}
-
 function App() {
   const rootRef = useRef(null)
   const actionsRef = useRef(null)
@@ -697,7 +663,7 @@ function App() {
             ))}
           </div>
 
-          <a className="nav-cta" href="#join-form">
+          <a className="nav-cta" href="#rejoindre">
             Rejoindre l’association
           </a>
         </nav>
@@ -729,7 +695,7 @@ function App() {
             >
               Découvrir nos actions
             </a>
-            <a className="primary-button" href="#join-form">
+            <a className="primary-button" href="#rejoindre">
               Rejoindre l’association
               <ArrowRight size={18} />
             </a>
@@ -1319,52 +1285,48 @@ function App() {
             <div className="sponsorship-contact-copy">
               <p className="eyebrow">Premier échange</p>
               <h3>Vous souhaitez en savoir plus ?</h3>
-              <p>Laissez-nous vos coordonnées. Votre application de messagerie s’ouvrira avec votre demande préremplie.</p>
-              <a href="mailto:passerelleresdavenir.asso@gmail.com">passerelleresdavenir.asso@gmail.com</a>
-              <a href="tel:+33777229335">+33 7 77 22 93 35</a>
+              <p>
+                Nos équipes sont à votre disposition pour échanger sur le parrainage, répondre à vos questions et définir ensemble la forme d'accompagnement qui vous correspond.
+              </p>
             </div>
 
-            <form
-              className="sponsorship-form"
-              onSubmit={(event) => handleSponsorshipSubmit(
-                event,
-                selectedSponsorshipFormats,
-                selectedSponsorshipFrequencies,
-                selectedSponsorProfiles,
-              )}
-            >
-              <div className="form-field">
-                <label htmlFor="sponsor-name">Nom et prénom</label>
-                <input id="sponsor-name" name="name" autoComplete="name" required />
+            <div className="contact-direct-panel">
+              <div className="contact-card">
+                <div className="contact-card-icon">
+                  <Mail size={22} aria-hidden="true" />
+                </div>
+                <div className="contact-card-content">
+                  <span className="contact-card-label">Écrivez-nous par e-mail</span>
+                  <a className="contact-card-link" href="mailto:passerelleresdavenir.asso@gmail.com">
+                    passerelleresdavenir.asso@gmail.com
+                  </a>
+                  <p className="contact-card-desc">Réponse rapide de nos coordinateurs</p>
+                </div>
               </div>
-              <div className="form-field">
-                <label htmlFor="sponsor-country">Pays de résidence</label>
-                <input id="sponsor-country" name="country" autoComplete="country-name" required />
+
+              <div className="contact-card">
+                <div className="contact-card-icon">
+                  <Phone size={22} aria-hidden="true" />
+                </div>
+                <div className="contact-card-content">
+                  <span className="contact-card-label">Contactez-nous par téléphone</span>
+                  <a className="contact-card-link" href="tel:+33777229335">
+                    +33 7 77 22 93 35
+                  </a>
+                  <p className="contact-card-desc">Du lundi au vendredi</p>
+                </div>
               </div>
-              <div className="form-field">
-                <label htmlFor="sponsor-email">E-mail</label>
-                <input id="sponsor-email" name="email" type="email" autoComplete="email" required />
+
+              <div className="contact-direct-actions">
+                <a className="primary-button" href="mailto:passerelleresdavenir.asso@gmail.com?subject=Demande%20d%E2%80%99information%20sur%20le%20parrainage">
+                  Nous écrire un e-mail
+                  <ArrowRight size={18} />
+                </a>
+                <a className="secondary-button" href="tel:+33777229335">
+                  Appeler directement
+                </a>
               </div>
-              <div className="form-field">
-                <label htmlFor="sponsor-phone">Téléphone</label>
-                <input id="sponsor-phone" name="phone" type="tel" autoComplete="tel" />
-              </div>
-              <div className="form-field form-field-wide">
-                <label htmlFor="sponsor-motivation">Motivation <span>(facultatif)</span></label>
-                <textarea id="sponsor-motivation" name="motivation" rows="4" />
-              </div>
-              <label className="privacy-consent form-field-wide">
-                <input type="checkbox" name="consent" required />
-                <span>
-                  J’accepte que mes données soient utilisées uniquement pour répondre à ma demande de parrainage. Je peux demander leur accès,
-                  rectification ou suppression à tout moment.
-                </span>
-              </label>
-              <button className="primary-button form-submit form-field-wide" type="submit">
-                Soumettre ma demande
-                <ArrowRight size={18} />
-              </button>
-            </form>
+            </div>
           </div>
         </section>
 
@@ -1446,42 +1408,46 @@ function App() {
             <p className="join-eyebrow">Passerelles d’Avenir</p>
             <h2 id="join-heading">Construisons une passerelle avec vous.</h2>
             <p>
-              Devenez bénévole, adhérez ou parrainez un enfant : dites-nous comment vous voulez agir, nous vous répondrons.
+              Devenez bénévole, adhérez ou parrainez un enfant : contactez-nous directement par téléphone ou par e-mail. Nous répondrons à vos questions avec plaisir.
             </p>
-            <div className="join-contact" id="contact">
-              <span>Contact : <a href="mailto:passerelleresdavenir.asso@gmail.com">passerelleresdavenir.asso@gmail.com</a></span>
-              <span>Téléphone : <a href="tel:+33777229335">+33 7 77 22 93 35</a></span>
-            </div>
           </div>
 
-          <form className="join-form" id="join-form" onSubmit={handleJoinSubmit}>
-            <div className="join-field">
-              <label htmlFor="join-name">Nom</label>
-              <input id="join-name" name="name" autoComplete="name" required />
+          <div className="join-contact-panel" id="contact">
+            <h3 className="join-contact-title">Contactez notre équipe</h3>
+            <p className="join-contact-intro">
+              Choisissez le moyen de contact qui vous convient le mieux :
+            </p>
+
+            <div className="join-cards-grid">
+              <a className="join-interactive-card" href="mailto:passerelleresdavenir.asso@gmail.com">
+                <div className="join-interactive-icon">
+                  <Mail size={24} aria-hidden="true" />
+                </div>
+                <div className="join-interactive-info">
+                  <span className="join-interactive-label">Par courriel</span>
+                  <strong className="join-interactive-value">passerelleresdavenir.asso@gmail.com</strong>
+                  <span className="join-interactive-hint">Cliquez pour envoyer un e-mail</span>
+                </div>
+                <ArrowRight className="join-interactive-arrow" size={18} aria-hidden="true" />
+              </a>
+
+              <a className="join-interactive-card" href="tel:+33777229335">
+                <div className="join-interactive-icon">
+                  <Phone size={24} aria-hidden="true" />
+                </div>
+                <div className="join-interactive-info">
+                  <span className="join-interactive-label">Par téléphone</span>
+                  <strong className="join-interactive-value">+33 7 77 22 93 35</strong>
+                  <span className="join-interactive-hint">Cliquez pour composer le numéro</span>
+                </div>
+                <ArrowRight className="join-interactive-arrow" size={18} aria-hidden="true" />
+              </a>
             </div>
-            <div className="join-field">
-              <label htmlFor="join-email">E-mail</label>
-              <input id="join-email" name="email" type="email" autoComplete="email" required />
+
+            <div className="join-contact-footer">
+              <p>Permanence du lundi au vendredi • Association Passerelles d’Avenir</p>
             </div>
-            <div className="join-field">
-              <label htmlFor="join-engagement">Je souhaite</label>
-              <select id="join-engagement" name="engagement" defaultValue="Adhérer" required>
-                <option value="Adhérer">Adhérer</option>
-                <option value="Devenir bénévole">Devenir bénévole</option>
-                <option value="Devenir membre actif">Devenir membre actif</option>
-                <option value="Devenir membre sympathisant">Devenir membre sympathisant</option>
-              </select>
-            </div>
-            <div className="join-field">
-              <label htmlFor="join-message">Message</label>
-              <textarea id="join-message" name="message" rows="4" />
-            </div>
-            <label className="join-consent">
-              <input type="checkbox" name="consent" required />
-              <span>J’accepte que mes données soient utilisées uniquement pour répondre à ma demande. Je peux demander leur accès, rectification ou suppression à tout moment.</span>
-            </label>
-            <button className="join-submit" type="submit">Envoyer ma demande</button>
-          </form>
+          </div>
         </section>
       </main>
 
