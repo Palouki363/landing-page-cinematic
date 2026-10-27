@@ -4,6 +4,7 @@ import {
   Check,
   ChevronLeft,
   ChevronRight,
+  ExternalLink,
   HandHeart,
   HeartHandshake,
   Leaf,
@@ -396,91 +397,10 @@ const steps = [
   },
 ]
 
-const support = [
-  {
-    name: 'Don ponctuel',
-    price: 'Libre',
-    description: 'Choisissez le montant de votre soutien aux actions de l’association.',
-    details: ['Montant au choix', 'Soutien aux missions', 'Geste ponctuel'],
-    featured: false,
-    cta: 'Faire un don',
-  },
-  {
-    name: 'Parrainage',
-    price: 'Libre',
-    description: 'Choisissez le montant de votre contribution au parcours d’un enfant ou d’un jeune.',
-    details: ['Montant au choix', 'Soutien au parcours', 'Engagement durable'],
-    featured: false,
-    cta: 'Devenir parrain ou marraine',
-  },
-  {
-    name: 'Cotisation',
-    price: 'Libre',
-    description: 'Choisissez le montant de votre cotisation pour soutenir l’association.',
-    details: ['Montant de cotisation au choix', 'Adhésion à l’association', 'Soutien aux missions'],
-    featured: true,
-    cta: 'Je veux cotiser',
-  },
-]
-
-const quickDonationAmounts = [5, 20, 50, 100, 250, 500, 1000]
-
-function DonationAmountControl({ id, amount, onAmountChange }) {
-  return (
-    <div className="donation-control">
-      <div className="donation-value-row">
-        <label htmlFor={id}>Montant au choix</label>
-        <output htmlFor={id} aria-live="polite">
-          {amount.toLocaleString('fr-FR')} €
-        </output>
-      </div>
-      <input
-        className="donation-slider"
-        id={id}
-        type="range"
-        min="5"
-        max="1000"
-        step="5"
-        value={amount}
-        onChange={(event) => onAmountChange(Number(event.target.value))}
-        aria-label="Montant du soutien, de 5 à 1 000 euros"
-      />
-      <div className="donation-boundaries" aria-hidden="true">
-        <span>5 €</span>
-        <span>1 000 €</span>
-      </div>
-      <div className="donation-presets" aria-label="Montants rapides">
-        {quickDonationAmounts.map((quickAmount) => (
-          <button
-            className={`donation-preset ${quickAmount === amount ? 'is-selected' : ''}`}
-            key={quickAmount}
-            type="button"
-            aria-pressed={quickAmount === amount}
-            onClick={() => onAmountChange(quickAmount)}
-          >
-            {quickAmount.toLocaleString('fr-FR')} €
-          </button>
-        ))}
-      </div>
-    </div>
-  )
-}
-
-function buildSupportEmail(name, amount, selectedFormats = []) {
-  const isDonation = name === 'Don ponctuel'
-  const isContribution = name === 'Cotisation'
-  const request = isDonation
-    ? `Je souhaite faire un don ponctuel de ${amount} €.`
-    : isContribution
-      ? `Je souhaite cotiser à hauteur de ${amount} €.`
-      : `Je souhaite soutenir un parrainage avec une contribution de ${amount} €. Types choisis : ${selectedFormats.length ? selectedFormats.join(', ') : 'à définir ensemble'}.`
-  const subject = encodeURIComponent(
-    isDonation ? `Don ponctuel de ${amount} €` : isContribution ? `Cotisation de ${amount} €` : `Demande de parrainage de ${amount} €`,
-  )
-  const body = encodeURIComponent(`Bonjour,\n\n${request}\n\nCordialement,`)
-
-  return `mailto:passerelleresdavenir.asso@gmail.com?subject=${subject}&body=${body}`
-}
+const HELLOASSO_DONATION_URL =
+  'https://www.helloasso.com/associations/passerelles-d-avenir/formulaires/1?_gl=1*1xgf3js*_gcl_aw*R0NMLjE3OTMxMzU5MTQuQ2p3S0NBandsNEhYQmhBakVpd0FIbHBXaEFoc0NQZEY0cVNrdW1Uak0zQ01HemM2am8yNjFfUy1wQmJob3UtOExrNEZqV29vYmMwTHd4b0MtejRRQXZEX0J3RQ..*_gcl_au*MTg4MjY0Nzg1Ny4xNzkzMTM1OTE0Li0uLS4xNzkzMTM2MzQ0LjE3MDU2OTA1NzEuMTc5MzEzNjM0NS4xNzkzMTM3Mjky'
+const HELLOASSO_EMBED_URL =
+  'https://www.helloasso.com/associations/passerelles-d-avenir/formulaires/1/widget'
 
 const sponsorshipFormats = [
   'Scolaire individuel',
@@ -525,9 +445,6 @@ function App() {
   const [selectedSponsorshipFormats, setSelectedSponsorshipFormats] = useState([])
   const [selectedSponsorshipFrequencies, setSelectedSponsorshipFrequencies] = useState([])
   const [selectedSponsorProfiles, setSelectedSponsorProfiles] = useState([])
-  const [donationAmount, setDonationAmount] = useState(20)
-  const [sponsorshipAmount, setSponsorshipAmount] = useState(20)
-  const [membershipAmount, setMembershipAmount] = useState(20)
   const [expenseAmounts, setExpenseAmounts] = useState(() => programExpenses.map(() => ''))
   const [resourceAmounts, setResourceAmounts] = useState(() => programResources.map(() => ''))
   const totalExpenses = calculateBudgetTotal(expenseAmounts)
@@ -639,6 +556,22 @@ function App() {
       programsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
     }
   }, [programsOpen])
+
+  useEffect(() => {
+    const handleWidgetMessage = (e) => {
+      if (!e.data) return
+      const dataHeight = e.data.height
+      const haWidgetElement = document.getElementById('haWidget')
+      if (haWidgetElement && dataHeight && dataHeight > parseFloat(haWidgetElement.height || 0)) {
+        haWidgetElement.height = `${dataHeight}px`
+      }
+    }
+
+    window.addEventListener('message', handleWidgetMessage)
+    return () => {
+      window.removeEventListener('message', handleWidgetMessage)
+    }
+  }, [])
 
   return (
     <div className="page-shell" ref={rootRef}>
@@ -1330,76 +1263,67 @@ function App() {
           </div>
         </section>
 
-        <section className="pricing" id="engager">
+        <section className="pricing helloasso-section" id="engager">
           <div className="section-heading centered">
-            <p className="eyebrow">Soutenez-nous</p>
-            <h2>Chaque action ouvre une nouvelle passerelle.</h2>
+            <p className="eyebrow">Soutenez Passerelles d’Avenir</p>
+            <h2>Faire un don à l’association</h2>
+            <p className="pricing-lead-text">
+              Vos dons sont directement reversés aux actions et missions de l’association et bénéficient d’un cadre 100% sécurisé via HelloAsso.
+            </p>
           </div>
 
-          <div className="pricing-grid">
-            {support.map(({ name, price, description, details, featured, cta }) => {
-              const isDonation = name === 'Don ponctuel'
-              const isSponsorship = name === 'Parrainage'
-              const isContribution = name === 'Cotisation'
-              const amount = isSponsorship ? sponsorshipAmount : isContribution ? membershipAmount : donationAmount
-              const setAmount = isSponsorship ? setSponsorshipAmount : isContribution ? setMembershipAmount : setDonationAmount
+          <div className="helloasso-embed-card">
+            <div className="helloasso-embed-topbar">
+              <div className="helloasso-embed-topbar-info">
+                <span className="helloasso-secure-badge">
+                  <ShieldCheck size={15} />
+                  Paiement 100% sécurisé
+                </span>
+                <span className="helloasso-embed-title">Formulaire officiel HelloAsso</span>
+              </div>
+              <a
+                href={HELLOASSO_DONATION_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="helloasso-embed-external-link"
+              >
+                <span>Ouvrir sur helloasso.com</span>
+                <ExternalLink size={15} />
+              </a>
+            </div>
 
-              return (
-                <article key={name} className={`price-card ${featured ? 'featured' : ''}`}>
-                  <p className="price-name">{name}</p>
-                  {isDonation || isSponsorship || isContribution ? (
-                    <DonationAmountControl
-                      id={isSponsorship ? 'sponsorship-amount' : isContribution ? 'membership-amount' : 'donation-amount'}
-                      amount={amount}
-                      onAmountChange={setAmount}
-                    />
-                  ) : (
-                  <h3>{price}</h3>
-                  )}
-                  {isSponsorship && (
-                    <fieldset className="card-sponsorship-formats">
-                      <legend>Choisissez un ou plusieurs types</legend>
-                      <div className="card-sponsorship-option-grid">
-                        {sponsorshipFormats.map((format, index) => (
-                          <label key={format} htmlFor={`card-sponsorship-format-${index}`}>
-                            <input
-                              id={`card-sponsorship-format-${index}`}
-                              type="checkbox"
-                              checked={selectedSponsorshipFormats.includes(format)}
-                              onChange={() => setSelectedSponsorshipFormats((selected) => (
-                                selected.includes(format)
-                                  ? selected.filter((item) => item !== format)
-                                  : [...selected, format]
-                              ))}
-                            />
-                            <span>{format}</span>
-                          </label>
-                        ))}
-                      </div>
-                    </fieldset>
-                  )}
-                  <p className="price-description">{description}</p>
+            <div className="helloasso-embed-frame-wrapper">
+              <iframe
+                id="haWidget"
+                allow="payment 'self' https://paymenthub.helloassopay.com https://helloasso.com"
+                allowTransparency="true"
+                scrolling="auto"
+                title="Formulaire de don HelloAsso - Passerelles d'Avenir"
+                src="https://www.helloasso.com/associations/passerelles-d-avenir/formulaires/1/widget"
+                style={{ width: '100%', height: '750px', border: 'none' }}
+                onLoad={() => {
+                  window.addEventListener('message', function (e) {
+                    if (!e.data) return
+                    const dataHeight = e.data.height
+                    const haWidgetElement = document.getElementById('haWidget')
+                    if (haWidgetElement && dataHeight && dataHeight > parseFloat(haWidgetElement.height || 0)) {
+                      haWidgetElement.height = dataHeight + 'px'
+                    }
+                  })
+                }}
+              />
+            </div>
 
-                  <ul>
-                    {details.map((detail) => (
-                      <li key={detail}>
-                        <Check size={15} />
-                        {detail}
-                      </li>
-                    ))}
-                  </ul>
-
-                  <a
-                    href={isDonation || isSponsorship || isContribution
-                      ? buildSupportEmail(name, amount, isSponsorship ? selectedSponsorshipFormats : [])
-                      : '#contact'}
-                    className={featured ? 'primary-button' : 'secondary-button'}
-                  >
-                    {cta}
-                  </a>
-                </article>
-              )
-            })}
+            <div className="helloasso-embed-footer">
+              <span>🔒 Transaction chiffrée SSL • Reçu fiscal émis automatiquement</span>
+              <a
+                href={HELLOASSO_DONATION_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Accéder directement à la page HelloAsso
+              </a>
+            </div>
           </div>
         </section>
 

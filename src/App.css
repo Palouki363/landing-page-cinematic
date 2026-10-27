@@ -1903,221 +1903,118 @@
   outline-offset: 3px;
 }
 
-.pricing-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 22px;
+/* HelloAsso Embedded Section */
+.helloasso-section {
+  width: min(1060px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 52px 0 24px;
 }
 
-.price-card {
-  display: flex;
-  flex-direction: column;
+.helloasso-embed-card {
+  position: relative;
+  margin-top: 36px;
+  background: #0d1520;
+  border: 1px solid rgba(142, 201, 255, 0.28);
+  border-radius: 18px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 32px rgba(78, 139, 231, 0.12);
+  overflow: hidden;
 }
 
-.price-card.featured {
-  background: linear-gradient(180deg, rgba(142, 201, 255, 0.18), rgba(11, 16, 22, 0.96));
-  border-color: rgba(142, 201, 255, 0.28);
-  transform: translateY(-10px);
-}
-
-.price-name {
-  margin: 0;
-  color: rgba(255, 255, 255, 0.68);
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  font-size: 0.72rem;
-}
-
-.price-card h3 {
-  margin: 18px 0 12px;
-  color: #fff;
-  font-size: clamp(2.1rem, 2.8vw, 3rem);
-  letter-spacing: -0.07em;
-}
-
-.donation-control {
-  margin: 18px 0 14px;
-}
-
-.donation-value-row {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 12px;
-}
-
-.donation-value-row label {
-  color: rgba(255, 255, 255, 0.68);
-  font-size: 0.76rem;
-}
-
-.donation-value-row output {
-  color: #fff;
-  font-size: clamp(1.8rem, 2.4vw, 2.4rem);
-  font-weight: 800;
-  letter-spacing: -0.05em;
-  font-variant-numeric: tabular-nums;
-}
-
-.donation-slider {
-  display: block;
-  width: 100%;
-  height: 24px;
-  margin: 12px 0 0;
-  appearance: none;
-  background: transparent;
-  cursor: pointer;
-}
-
-.donation-slider::-webkit-slider-runnable-track {
-  height: 6px;
-  border-radius: 999px;
-  background: linear-gradient(90deg, #8ec9ff, #4e8be7);
-}
-
-.donation-slider::-moz-range-track {
-  height: 6px;
-  border-radius: 999px;
-  background: linear-gradient(90deg, #8ec9ff, #4e8be7);
-}
-
-.donation-slider::-webkit-slider-thumb {
-  width: 18px;
-  height: 18px;
-  margin-top: -6px;
-  appearance: none;
-  border: 2px solid #f5fbff;
-  border-radius: 50%;
-  background: #4e8be7;
-  box-shadow: 0 0 0 3px rgba(78, 139, 231, 0.22);
-}
-
-.donation-slider::-moz-range-thumb {
-  width: 14px;
-  height: 14px;
-  border: 2px solid #f5fbff;
-  border-radius: 50%;
-  background: #4e8be7;
-  box-shadow: 0 0 0 3px rgba(78, 139, 231, 0.22);
-}
-
-.donation-slider:focus-visible {
-  outline: 2px solid #8ec9ff;
-  outline-offset: 4px;
-}
-
-.donation-boundaries {
-  display: flex;
-  justify-content: space-between;
-  color: rgba(255, 255, 255, 0.56);
-  font-size: 0.68rem;
-}
-
-.donation-presets {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 7px;
-  margin-top: 14px;
-}
-
-.donation-preset {
-  min-height: 34px;
-  padding: 6px 7px;
-  border: 1px solid rgba(142, 201, 255, 0.2);
-  border-radius: 6px;
-  background: rgba(142, 201, 255, 0.05);
-  color: rgba(255, 255, 255, 0.78);
-  font: inherit;
-  font-size: 0.72rem;
-  cursor: pointer;
-  transition: background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease;
-}
-
-.donation-preset:hover,
-.donation-preset.is-selected {
-  border-color: rgba(142, 201, 255, 0.72);
-  background: rgba(78, 139, 231, 0.2);
-  color: #fff;
-}
-
-.donation-preset:focus-visible {
-  outline: 2px solid #8ec9ff;
-  outline-offset: 2px;
-}
-
-.card-sponsorship-formats {
-  min-width: 0;
-  margin: 18px 0 12px;
-  padding: 0;
-  border: 0;
-}
-
-.card-sponsorship-formats legend {
-  padding: 0;
-  color: rgba(255, 255, 255, 0.78);
-  font-size: 0.78rem;
-  font-weight: 700;
-}
-
-.card-sponsorship-option-grid {
-  display: grid;
-  gap: 2px;
-  margin-top: 8px;
-}
-
-.card-sponsorship-option-grid label {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  padding: 8px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  color: rgba(255, 255, 255, 0.78);
-  font-size: 0.76rem;
-  line-height: 1.45;
-  cursor: pointer;
-}
-
-.card-sponsorship-option-grid label:has(input:checked) {
-  color: #fff;
-}
-
-.card-sponsorship-option-grid input {
-  flex: 0 0 auto;
-  width: 17px;
-  height: 17px;
-  margin: 1px 0 0;
-  accent-color: #8ec9ff;
-}
-
-.card-sponsorship-option-grid input:focus-visible {
-  outline: 2px solid #8ec9ff;
-  outline-offset: 3px;
-}
-
-.price-description {
-  margin: 0;
-  color: rgba(255, 255, 255, 0.7);
-  line-height: 1.7;
-}
-
-.price-card ul {
-  list-style: none;
-  padding: 0;
-  margin: 24px 0 26px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  color: rgba(255, 255, 255, 0.8);
-}
-
-.price-card li {
+.helloasso-embed-topbar {
   display: flex;
   align-items: center;
-  gap: 10px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 14px;
+  padding: 16px 24px;
+  background: linear-gradient(180deg, rgba(20, 32, 48, 0.75), rgba(13, 21, 32, 0.95));
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.price-card li svg {
+.helloasso-embed-topbar-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.helloasso-secure-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(46, 213, 115, 0.14);
+  border: 1px solid rgba(46, 213, 115, 0.32);
+  color: #7bed9f;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.helloasso-embed-title {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.88rem;
+  font-weight: 500;
+}
+
+.helloasso-embed-external-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
   color: #8ec9ff;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  padding: 6px 12px;
+  border-radius: 8px;
+  background: rgba(142, 201, 255, 0.08);
+  border: 1px solid rgba(142, 201, 255, 0.22);
+  transition: all 0.2s ease;
+}
+
+.helloasso-embed-external-link:hover {
+  background: rgba(142, 201, 255, 0.18);
+  border-color: rgba(142, 201, 255, 0.5);
+  color: #ffffff;
+}
+
+.helloasso-embed-frame-wrapper {
+  position: relative;
+  width: 100%;
+  min-height: 750px;
+  background: #ffffff;
+}
+
+.helloasso-inline-iframe {
+  width: 100%;
+  height: 750px;
+  border: none;
+  display: block;
+}
+
+.helloasso-embed-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  background: #0d1520;
+  color: rgba(255, 255, 255, 0.62);
+  font-size: 0.8rem;
+}
+
+.helloasso-embed-footer a {
+  color: #8ec9ff;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.18s ease;
+}
+
+.helloasso-embed-footer a:hover {
+  color: #ffffff;
 }
 
 .join-section {
