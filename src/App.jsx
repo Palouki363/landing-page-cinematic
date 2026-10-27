@@ -413,10 +413,6 @@ const sponsorshipFormats = [
   'Projet d’autonomisation individuel',
 ]
 
-const sponsorProfiles = ['Particulier', 'Famille', 'Entreprise', 'Association', 'Fondation', 'Groupe']
-
-const sponsorshipFrequencies = ['Mensuelle', 'Trimestrielle', 'Semestrielle', 'Annuelle', 'Ponctuelle']
-
 const sponsorshipGuarantees = [
   'Un référent clairement identifié pour chaque parrainage',
   'Une relation encadrée par l’association et la structure locale ou le référent',
@@ -443,8 +439,6 @@ function App() {
   const [activeAction, setActiveAction] = useState(0)
   const [programsOpen, setProgramsOpen] = useState(false)
   const [selectedSponsorshipFormats, setSelectedSponsorshipFormats] = useState([])
-  const [selectedSponsorshipFrequencies, setSelectedSponsorshipFrequencies] = useState([])
-  const [selectedSponsorProfiles, setSelectedSponsorProfiles] = useState([])
   const [expenseAmounts, setExpenseAmounts] = useState(() => programExpenses.map(() => ''))
   const [resourceAmounts, setResourceAmounts] = useState(() => programResources.map(() => ''))
   const totalExpenses = calculateBudgetTotal(expenseAmounts)
@@ -1122,55 +1116,6 @@ function App() {
               <li><Check size={17} />Suivre les progrès réalisés grâce à votre engagement</li>
               <li><Check size={17} />Participer à la construction d’un avenir autonome</li>
             </ul>
-          </div>
-
-          <div className="sponsorship-details-grid">
-            <article className="sponsorship-detail">
-              <h3>Type de parrain ou marraine</h3>
-              <p className="sponsor-profile-prompt">Choisir</p>
-              <fieldset className="sponsor-profile-fieldset" aria-label="Type de parrain ou marraine">
-                <div className="sponsor-profile-options">
-                  {sponsorProfiles.map((profile, index) => (
-                    <label className="sponsor-profile-option" key={profile} htmlFor={`sponsor-profile-${index}`}>
-                      <input
-                        id={`sponsor-profile-${index}`}
-                        type="checkbox"
-                        checked={selectedSponsorProfiles.includes(profile)}
-                        onChange={() => setSelectedSponsorProfiles((selected) => (
-                          selected.includes(profile)
-                            ? selected.filter((item) => item !== profile)
-                            : [...selected, profile]
-                        ))}
-                      />
-                      <span>{profile}</span>
-                    </label>
-                  ))}
-                </div>
-              </fieldset>
-            </article>
-            <article className="sponsorship-detail">
-              <h3>Choisissez votre fréquence</h3>
-              <div className="frequency-option-grid">
-                {sponsorshipFrequencies.map((frequency, index) => (
-                  <label className="frequency-option" key={frequency} htmlFor={`sponsorship-frequency-${index}`}>
-                    <input
-                      id={`sponsorship-frequency-${index}`}
-                      type="checkbox"
-                      checked={selectedSponsorshipFrequencies.includes(frequency)}
-                      onChange={() => setSelectedSponsorshipFrequencies((selected) => (
-                        selected.includes(frequency)
-                          ? selected.filter((item) => item !== frequency)
-                          : [...selected, frequency]
-                      ))}
-                    />
-                    <span>{frequency}</span>
-                  </label>
-                ))}
-              </div>
-              <p className="sponsorship-note">
-                La durée dépend du parcours du bénéficiaire et de vos possibilités. Le parrainage peut être réévalué à tout moment.
-              </p>
-            </article>
           </div>
 
           <div className="sponsorship-section sponsorship-assurances">
