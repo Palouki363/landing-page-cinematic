@@ -20,6 +20,7 @@ import './App.css'
 gsap.registerPlugin(ScrollTrigger)
 
 const navItems = [
+  { label: 'Qui sommes-nous ?', href: '#qui-sommes-nous' },
   { label: 'Mission', href: '#mission' },
   { label: 'Nos actions', href: '#actions' },
   { label: 'Programmes', href: '#programmes' },
@@ -628,6 +629,45 @@ function App() {
             </a>
             <a className="secondary-button" href="#parrainage">Devenir parrain ou marraine</a>
             <a className="tertiary-button" href="#engager">Faire un don</a>
+          </div>
+        </section>
+
+        <section className="about-section" id="qui-sommes-nous" aria-labelledby="about-heading">
+          <div className="section-heading centered">
+            <p className="eyebrow">Qui sommes-nous ?</p>
+            <h2 id="about-heading">Bâtir des passerelles d’autonomie et de dignité.</h2>
+            <p className="section-subtitle">
+              Passerelles d’Avenir est une association loi 1901 engagée en faveur de l’autonomie, de l’inclusion sociale et du pouvoir d’agir.
+            </p>
+          </div>
+
+          <div className="about-grid">
+            <article className="about-card">
+              <span className="about-badge">Notre vocation</span>
+              <h3>Une solidarité qui émancipe</h3>
+              <p>
+                Face aux freins administratifs, linguistiques ou numériques, nous croyons que l’aide doit favoriser
+                l’autonomie et non créer de dépendance. Nous offrons un accompagnement de proximité, bienveillant et structurant.
+              </p>
+            </article>
+
+            <article className="about-card">
+              <span className="about-badge">Notre mission</span>
+              <h3>Des ponts vers l’avenir</h3>
+              <p>
+                Faciliter l’accès aux droits, aux compétences essentielles (français, numérique), à la culture locale,
+                et développer un parrainage protecteur et responsabilisant pour les enfants et les jeunes.
+              </p>
+            </article>
+
+            <article className="about-card">
+              <span className="about-badge">Nos principes</span>
+              <h3>Un cadre éthique et exigeant</h3>
+              <p>
+                Non-discrimination, laïcité, confidentialité, respect du parcours de chacun et transparence totale dans
+                l’utilisation des moyens mobilisés au service de l’intérêt général.
+              </p>
+            </article>
           </div>
         </section>
 
