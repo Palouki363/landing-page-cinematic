@@ -21,10 +21,9 @@ gsap.registerPlugin(ScrollTrigger)
 
 const navItems = [
   { label: 'Qui sommes-nous ?', href: '#qui-sommes-nous' },
-  { label: 'Mission', href: '#mission' },
   { label: 'Nos actions', href: '#actions' },
-  { label: 'Programmes', href: '#programmes' },
-  { label: 'Parrainage', href: '#parrainage' },
+  { label: 'Notre programme annuel', href: '#programmes' },
+  { label: 'Notre programme de parrainage', href: '#parrainage' },
   { label: 'Contact', href: '#contact' },
 ]
 
@@ -1370,11 +1369,11 @@ function App() {
         </div>
 
         <div className="footer-links">
-          <a href="#mission">Mission</a>
+          <a href="#qui-sommes-nous">Qui sommes-nous ?</a>
           <a href="#impact">Impact</a>
-          <a href="#programmes" onClick={handleProgramsClick}>Programmes</a>
-          <a href="#parrainage">Parrainage</a>
-          <a href="#engager">Engager</a>
+          <a href="#programmes" onClick={handleProgramsClick}>Notre programme annuel</a>
+          <a href="#parrainage">Notre programme de parrainage</a>
+          <a href="#engager">Faire un don</a>
           <a href="#contact">Contact</a>
         </div>
 
