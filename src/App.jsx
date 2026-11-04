@@ -359,40 +359,25 @@ function formatEuro(amount) {
 
 const pillars = [
   {
+    step: '01',
     icon: HandHeart,
-    title: 'Accueil humain',
-    text: 'Une première étape essentielle : accueillir sans jugement, avec respect, dignité et écoute active.',
-    chip: 'écoute',
+    title: 'Accueil & Écoute',
+    text: 'Comprendre sans jugement : identifier les besoins réels des personnes et des familles pour proposer une orientation adaptée.',
+    chip: 'Comprendre',
   },
   {
     icon: HeartHandshake,
+    step: '02',
     title: 'Accompagnement',
-    text: 'Des parcours individualisés, des repères clairs et un soutien concret pour avancer avec sécurité.',
-    chip: 'confiance',
+    text: 'Mobiliser les bons interlocuteurs, le bon cadre et des repères clairs pour sécuriser le parcours vers l’autonomie.',
+    chip: 'Accompagner',
   },
   {
+    step: '03',
     icon: Leaf,
-    title: 'Éducation & avenir',
-    text: 'Nous investissons dans les enfants et les jeunes pour leur offrir un avenir plus juste et plus ouvert.',
-    chip: 'avenir',
-  },
-]
-
-const steps = [
-  {
-    number: '01',
-    title: 'Comprendre',
-    text: 'Nous identifions les besoins réels des personnes et des familles pour proposer une aide adaptée.',
-  },
-  {
-    number: '02',
-    title: 'Accompagner',
-    text: 'Nous mobilisons les bons interlocuteurs, le bon cadre et les bonnes relations pour sécuriser le parcours.',
-  },
-  {
-    number: '03',
-    title: 'Faire grandir',
-    text: 'Chaque parcours devient une pierre d’orientation pour construire une inclusion durable et humaine.',
+    title: 'Éducation & Avenir',
+    text: 'Investir dans les enfants et les jeunes pour bâtir une inclusion durable, solidaire et porteuse d’avenir.',
+    chip: 'Faire grandir',
   },
 ]
 
@@ -488,18 +473,6 @@ function App() {
         scrollTrigger: {
           trigger: '.pillars',
           start: 'top 78%',
-        },
-      })
-
-      gsap.from('.step-card', {
-        y: 55,
-        opacity: 0,
-        duration: 0.9,
-        stagger: 0.15,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: '.steps',
-          start: 'top 76%',
         },
       })
 
@@ -998,15 +971,18 @@ function App() {
 
         <section className="pillars" id="impact">
           <div className="section-heading">
-            <p className="eyebrow">Pourquoi nous faire confiance</p>
+            <p className="eyebrow">Notre méthode & nos piliers</p>
             <h2>Une approche claire, humaine et structurée.</h2>
           </div>
 
           <div className="pillar-grid">
-            {pillars.map(({ icon: Icon, title, text, chip }) => (
+            {pillars.map(({ icon: Icon, title, text, chip, step }) => (
               <article key={title} className="pillar-card">
-                <div className="pillar-icon">
-                  <Icon size={22} />
+                <div className="pillar-top-row">
+                  <div className="pillar-icon">
+                    <Icon size={22} />
+                  </div>
+                  <span className="step-number-badge">{step}</span>
                 </div>
                 <div className="pillar-head">
                   <h3>{title}</h3>
@@ -1021,13 +997,13 @@ function App() {
         <section className="story">
           <div className="story-photo">
             <img
-              src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1200&q=80"
-              alt="Personnes réunies autour d’une table lors d’un échange collectif."
+              src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1200&q=80"
+              alt="Groupe d'amis et de bénévoles souriants et solidaires."
             />
           </div>
 
           <div className="story-copy">
-            <p className="eyebrow">Notre mission</p>
+            <p className="eyebrow">Notre engagement</p>
             <h2>Nous croyons que chaque parcours mérite un cadre de dignité, d’espoir et de possibilité.</h2>
             <p>
               Nous accompagnons les personnes migrantes dans leur intégration en France et soutenons les enfants et les jeunes
@@ -1051,26 +1027,9 @@ function App() {
           </div>
         </section>
 
-        <section className="steps">
-          <div className="section-heading centered">
-            <p className="eyebrow">Notre méthode</p>
-            <h2>Une action qui part du terrain et vise l’impact durable.</h2>
-          </div>
-
-          <div className="step-grid">
-            {steps.map(({ number, title, text }) => (
-              <article key={number} className="step-card">
-                <span className="step-number">{number}</span>
-                <h3>{title}</h3>
-                <p>{text}</p>
-              </article>
-            ))}
-          </div>
-        </section>
-
         <section className="commitments">
           <div className="section-heading">
-            <p className="eyebrow">Nos engagements</p>
+            <p className="eyebrow">Nos champs d’action</p>
             <h2>Une solidarité qui relie les parcours et les générations.</h2>
           </div>
 
@@ -1200,46 +1159,17 @@ function App() {
           <div className="sponsorship-contact" id="devenir-parrain">
             <div className="sponsorship-contact-copy">
               <p className="eyebrow">Premier échange</p>
-              <h3>Vous souhaitez en savoir plus ?</h3>
+              <h3>Vous souhaitez parrainer ou en savoir plus ?</h3>
               <p>
-                Nos équipes sont à votre disposition pour échanger sur le parrainage, répondre à vos questions et définir ensemble la forme d'accompagnement qui vous correspond.
+                Nos équipes sont à votre disposition pour échanger sur le parrainage, répondre à vos questions et définir ensemble la forme d’accompagnement qui correspond à vos souhaits.
               </p>
-            </div>
-
-            <div className="contact-direct-panel">
-              <div className="contact-card">
-                <div className="contact-card-icon">
-                  <Mail size={22} aria-hidden="true" />
-                </div>
-                <div className="contact-card-content">
-                  <span className="contact-card-label">Écrivez-nous par e-mail</span>
-                  <a className="contact-card-link" href="mailto:passerelleresdavenir.asso@gmail.com">
-                    passerelleresdavenir.asso@gmail.com
-                  </a>
-                  <p className="contact-card-desc">Réponse rapide de nos coordinateurs</p>
-                </div>
-              </div>
-
-              <div className="contact-card">
-                <div className="contact-card-icon">
-                  <Phone size={22} aria-hidden="true" />
-                </div>
-                <div className="contact-card-content">
-                  <span className="contact-card-label">Contactez-nous par téléphone</span>
-                  <a className="contact-card-link" href="tel:+33777229335">
-                    +33 7 77 22 93 35
-                  </a>
-                  <p className="contact-card-desc">Du lundi au vendredi</p>
-                </div>
-              </div>
-
-              <div className="contact-direct-actions">
-                <a className="primary-button" href="mailto:passerelleresdavenir.asso@gmail.com?subject=Demande%20d%E2%80%99information%20sur%20le%20parrainage">
-                  Nous écrire un e-mail
+              <div className="hero-actions">
+                <a className="primary-button" href="#contact">
+                  Prendre contact avec nous
                   <ArrowRight size={18} />
                 </a>
-                <a className="secondary-button" href="tel:+33777229335">
-                  Appeler directement
+                <a className="secondary-button" href="mailto:passerelleresdavenir.asso@gmail.com?subject=Demande%20d%E2%80%99information%20sur%20le%20parrainage">
+                  Écrire directement par e-mail
                 </a>
               </div>
             </div>
