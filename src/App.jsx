@@ -6,6 +6,7 @@ import {
   ChevronRight,
   ExternalLink,
   HandHeart,
+  Heart,
   HeartHandshake,
   Leaf,
   Mail,
@@ -21,9 +22,7 @@ gsap.registerPlugin(ScrollTrigger)
 
 const navItems = [
   { label: 'Qui sommes-nous ?', href: '#qui-sommes-nous' },
-  { label: 'Nos actions', href: '#actions' },
   { label: 'Notre programme annuel', href: '#programmes' },
-  { label: 'Notre programme de parrainage', href: '#parrainage' },
 ]
 
 const values = [
@@ -562,8 +561,9 @@ function App() {
             ))}
           </div>
 
-          <a className="nav-cta" href="#rejoindre">
-            Rejoindre l’association
+          <a className="nav-cta nav-cta-parrainage" href="#parrainage">
+            <Heart size={16} className="nav-cta-heart" fill="currentColor" />
+            <span>Notre programme de parrainage</span>
           </a>
         </nav>
       </header>
