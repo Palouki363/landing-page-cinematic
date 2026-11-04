@@ -80,6 +80,10 @@
   gap: 22px;
 }
 
+.nav-links a {
+  white-space: nowrap;
+}
+
 .nav-links a,
 .footer-links a {
   color: rgba(255, 255, 255, 0.7);

@@ -24,7 +24,6 @@ const navItems = [
   { label: 'Nos actions', href: '#actions' },
   { label: 'Notre programme annuel', href: '#programmes' },
   { label: 'Notre programme de parrainage', href: '#parrainage' },
-  { label: 'Contact', href: '#contact' },
 ]
 
 const values = [
