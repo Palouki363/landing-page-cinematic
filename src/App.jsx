@@ -22,7 +22,7 @@ gsap.registerPlugin(ScrollTrigger)
 
 const navItems = [
   { label: 'Qui sommes-nous ?', href: '#qui-sommes-nous' },
-  { label: 'Notre programme annuel', href: '#programmes' },
+  { label: 'Découvrir nos actions', href: '#actions' },
 ]
 
 const values = [
@@ -587,12 +587,12 @@ function App() {
           <div className="hero-actions hero-visual-actions">
             <a
               className="secondary-button"
-              href="#actions"
-              onClick={handleActionsClick}
-              aria-expanded={actionsOpen}
-              aria-controls="actions"
+              href="#programmes"
+              onClick={handleProgramsClick}
+              aria-expanded={programsOpen}
+              aria-controls="programmes"
             >
-              Découvrir nos actions
+              Notre programme annuel
             </a>
             <a className="primary-button" href="#rejoindre">
               Rejoindre l’association
