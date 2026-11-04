@@ -1851,6 +1851,20 @@
   line-height: 1.7;
 }
 
+.sponsorship-contact-button {
+  background: linear-gradient(135deg, #fce072 0%, #f3ba41 55%, #df8f1a 100%);
+  color: #1a1200;
+  font-weight: 800;
+  box-shadow: 0 16px 40px rgba(243, 186, 65, 0.32);
+  border: 1px solid rgba(255, 235, 150, 0.4);
+}
+
+.sponsorship-contact-button:hover {
+  background: linear-gradient(135deg, #fff08d 0%, #f5c453 55%, #e69a25 100%);
+  box-shadow: 0 20px 48px rgba(243, 186, 65, 0.5);
+  transform: translateY(-2px) scale(1.02);
+}
+
 .contact-direct-panel {
   display: flex;
   flex-direction: column;

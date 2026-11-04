@@ -1164,7 +1164,7 @@ function App() {
                 Nos équipes sont à votre disposition pour échanger sur le parrainage, répondre à vos questions et définir ensemble la forme d’accompagnement qui correspond à vos souhaits.
               </p>
               <div className="hero-actions">
-                <a className="primary-button" href="#contact">
+                <a className="primary-button sponsorship-contact-button" href="#contact">
                   Prendre contact avec nous
                   <ArrowRight size={18} />
                 </a>
