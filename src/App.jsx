@@ -997,8 +997,8 @@ function App() {
         <section className="story">
           <div className="story-photo">
             <img
-              src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1200&q=80"
-              alt="Groupe d'amis et de bénévoles souriants et solidaires."
+              src="/integration-solidarite.jpg"
+              alt="Groupe de jeunes solidaires bras dessus bras dessous regardant vers l'avenir au coucher du soleil."
             />
           </div>
 
