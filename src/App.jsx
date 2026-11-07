@@ -385,14 +385,33 @@ const HELLOASSO_DONATION_URL =
 const HELLOASSO_EMBED_URL =
   'https://www.helloasso.com/associations/passerelles-d-avenir/formulaires/1/widget'
 
-const sponsorshipSteps = [
-  { number: '01', title: 'Prenez contact', text: 'Écrivez-nous ou appelez Passerelles d’Avenir.' },
-  { number: '02', title: 'Échangeons', text: 'Parlons de vos souhaits et de vos possibilités.' },
-  { number: '03', title: 'Découvrez un projet', text: 'Un bénéficiaire ou un projet vous est présenté.' },
-  { number: '04', title: 'Signez ensemble', text: 'Le dossier de parrainage est complété et signé ensemble.' },
+const sponsorProfiles = [
+  'Particulier',
+  'Famille',
+  'Entreprise',
+  'Association',
+  'Fondation',
+  'Groupe',
 ]
 
-const sponsorshipJourney = ['Identifier', 'Écouter', 'Évaluer', 'Parrainer', 'Accompagner', 'Suivre', 'Autonomiser']
+const sponsorshipFormats = [
+  'Parrainage individuel',
+  'Parrainage collectif',
+  'Parrainage scolaire',
+  'Parrainage formation professionnelle',
+  'Parrainage santé / prévention',
+  'Parrainage alimentaire',
+  'Parrainage équipement',
+  'Parrainage projet d’autonomisation',
+]
+
+const sponsorshipFrequencies = [
+  'Mensuelle',
+  'Trimestrielle',
+  'Semestrielle',
+  'Annuelle',
+  'Ponctuelle',
+]
 
 function App() {
   const rootRef = useRef(null)
@@ -401,7 +420,9 @@ function App() {
   const [actionsOpen, setActionsOpen] = useState(false)
   const [activeAction, setActiveAction] = useState(0)
   const [programsOpen, setProgramsOpen] = useState(false)
+  const [selectedSponsorProfiles, setSelectedSponsorProfiles] = useState([])
   const [selectedSponsorshipFormats, setSelectedSponsorshipFormats] = useState([])
+  const [selectedSponsorshipFrequencies, setSelectedSponsorshipFrequencies] = useState([])
   const [expenseAmounts, setExpenseAmounts] = useState(() => programExpenses.map(() => ''))
   const [resourceAmounts, setResourceAmounts] = useState(() => programResources.map(() => ''))
   const totalExpenses = calculateBudgetTotal(expenseAmounts)
@@ -1058,52 +1079,111 @@ function App() {
 
           <div className="sponsorship-section" id="comment-parrainer">
             <div className="section-heading centered">
-              <p className="eyebrow">Comment ça marche ?</p>
-              <h3>Quatre étapes pour commencer.</h3>
+              <p className="eyebrow">Modalités de parrainage</p>
+              <h3>Comment ça marche ?</h3>
+              <p className="section-subtitle">
+                Un engagement solidaire, souple et adapté à vos souhaits. Choisissez la formule et le rythme qui vous correspondent.
+              </p>
             </div>
-            <div className="sponsorship-step-grid">
-              {sponsorshipSteps.map(({ number, title, text }) => (
-                <article className="sponsorship-step" key={number}>
-                  <span className="step-number">{number}</span>
-                  <h4>{title}</h4>
-                  <p>{text}</p>
-                </article>
-              ))}
-            </div>
-            <ol className="sponsorship-journey" aria-label="Étapes du suivi d’un parrainage">
-              {sponsorshipJourney.map((stage, index) => (
-                <li key={stage}>
-                  <span>{String(index + 1).padStart(2, '0')}</span>
-                  {stage}
-                  {index < sponsorshipJourney.length - 1 && <ArrowRight size={16} aria-hidden="true" />}
-                </li>
-              ))}
-            </ol>
-          </div>
 
-          <div className="sponsorship-contact" id="devenir-parrain">
-            <div className="section-heading centered">
-              <p className="eyebrow">Comment ça marche ?</p>
-              <h3>Quatre étapes pour commencer.</h3>
+            <div className="sponsorship-options-container">
+              {/* 1. Profil */}
+              <div className="sponsorship-option-card">
+                <div className="sponsorship-card-header">
+                  <span className="sponsorship-badge-num">01</span>
+                  <h4>Qui peut devenir parrain ou marraine ?</h4>
+                </div>
+                <div className="sponsorship-checkbox-grid">
+                  {sponsorProfiles.map((profile, index) => {
+                    const id = `profile-${index}`
+                    const isChecked = selectedSponsorProfiles.includes(profile)
+                    return (
+                      <label key={profile} htmlFor={id} className={`custom-checkbox-pill ${isChecked ? 'is-active' : ''}`}>
+                        <input
+                          id={id}
+                          type="checkbox"
+                          checked={isChecked}
+                          onChange={() => {
+                            setSelectedSponsorProfiles((prev) =>
+                              prev.includes(profile)
+                                ? prev.filter((p) => p !== profile)
+                                : [...prev, profile]
+                            )
+                          }}
+                        />
+                        <span className="checkbox-icon">{isChecked ? '☑' : '☐'}</span>
+                        <span className="checkbox-label">{profile}</span>
+                      </label>
+                    )
+                  })}
+                </div>
+              </div>
+
+              {/* 2. Formes */}
+              <div className="sponsorship-option-card">
+                <div className="sponsorship-card-header">
+                  <span className="sponsorship-badge-num">02</span>
+                  <h4>Les formes de parrainage proposées</h4>
+                </div>
+                <div className="sponsorship-checkbox-grid sponsorship-grid-2cols">
+                  {sponsorshipFormats.map((format, index) => {
+                    const id = `format-${index}`
+                    const isChecked = selectedSponsorshipFormats.includes(format)
+                    return (
+                      <label key={format} htmlFor={id} className={`custom-checkbox-pill ${isChecked ? 'is-active' : ''}`}>
+                        <input
+                          id={id}
+                          type="checkbox"
+                          checked={isChecked}
+                          onChange={() => {
+                            setSelectedSponsorshipFormats((prev) =>
+                              prev.includes(format)
+                                ? prev.filter((f) => f !== format)
+                                : [...prev, format]
+                            )
+                          }}
+                        />
+                        <span className="checkbox-icon">{isChecked ? '☑' : '☐'}</span>
+                        <span className="checkbox-label">{format}</span>
+                      </label>
+                    )
+                  })}
+                </div>
+              </div>
+
+              {/* 3. Fréquence */}
+              <div className="sponsorship-option-card">
+                <div className="sponsorship-card-header">
+                  <span className="sponsorship-badge-num">03</span>
+                  <h4>Votre engagement, à votre rythme</h4>
+                </div>
+                <p className="sponsorship-card-intro">Fréquence de contribution :</p>
+                <div className="sponsorship-checkbox-grid">
+                  {sponsorshipFrequencies.map((freq, index) => {
+                    const id = `freq-${index}`
+                    const isChecked = selectedSponsorshipFrequencies.includes(freq)
+                    return (
+                      <label key={freq} htmlFor={id} className={`custom-checkbox-pill ${isChecked ? 'is-active' : ''}`}>
+                        <input
+                          id={id}
+                          type="checkbox"
+                          checked={isChecked}
+                          onChange={() => {
+                            setSelectedSponsorshipFrequencies((prev) =>
+                              prev.includes(freq)
+                                ? prev.filter((f) => f !== freq)
+                                : [...prev, freq]
+                            )
+                          }}
+                        />
+                        <span className="checkbox-icon">{isChecked ? '☑' : '☐'}</span>
+                        <span className="checkbox-label">{freq}</span>
+                      </label>
+                    )
+                  })}
+                </div>
+              </div>
             </div>
-            <div className="sponsorship-step-grid">
-              {sponsorshipSteps.map(({ number, title, text }) => (
-                <article className="sponsorship-step" key={number}>
-                  <span className="step-number">{number}</span>
-                  <h4>{title}</h4>
-                  <p>{text}</p>
-                </article>
-              ))}
-            </div>
-            <ol className="sponsorship-journey" aria-label="Étapes du suivi d’un parrainage">
-              {sponsorshipJourney.map((stage, index) => (
-                <li key={stage}>
-                  <span>{String(index + 1).padStart(2, '0')}</span>
-                  {stage}
-                  {index < sponsorshipJourney.length - 1 && <ArrowRight size={16} aria-hidden="true" />}
-                </li>
-              ))}
-            </ol>
           </div>
 
           <div className="sponsorship-contact" id="devenir-parrain">

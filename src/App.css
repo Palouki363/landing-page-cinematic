@@ -1803,6 +1803,135 @@
   line-height: 1.45;
 }
 
+.sponsorship-options-container {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  margin-top: 36px;
+}
+
+.sponsorship-option-card {
+  padding: 28px;
+  border-radius: 20px;
+  border: 1px solid rgba(142, 201, 255, 0.18);
+  background: rgba(14, 22, 34, 0.65);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(10px);
+}
+
+.sponsorship-card-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.sponsorship-badge-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: rgba(142, 201, 255, 0.12);
+  border: 1px solid rgba(142, 201, 255, 0.3);
+  color: #8ec9ff;
+  font-weight: 800;
+  font-size: 0.85rem;
+}
+
+.sponsorship-card-header h4 {
+  margin: 0;
+  color: #f8fbff;
+  font-size: clamp(1.2rem, 2vw, 1.45rem);
+  letter-spacing: -0.02em;
+}
+
+.sponsorship-card-intro {
+  margin: -6px 0 16px;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.92rem;
+  font-weight: 600;
+}
+
+.sponsorship-checkbox-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.sponsorship-checkbox-grid.sponsorship-grid-2cols {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.custom-checkbox-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  border-radius: 12px;
+  border: 1px solid rgba(142, 201, 255, 0.18);
+  background: rgba(255, 255, 255, 0.03);
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.22s ease;
+}
+
+.custom-checkbox-pill input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+  width: 0;
+  height: 0;
+}
+
+.custom-checkbox-pill .checkbox-icon {
+  font-size: 1.15rem;
+  line-height: 1;
+  color: #8ec9ff;
+  transition: transform 0.18s ease;
+}
+
+.custom-checkbox-pill:hover {
+  background: rgba(142, 201, 255, 0.08);
+  border-color: rgba(142, 201, 255, 0.4);
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+.custom-checkbox-pill.is-active {
+  background: linear-gradient(135deg, rgba(142, 201, 255, 0.22), rgba(78, 139, 231, 0.25));
+  border-color: rgba(142, 201, 255, 0.75);
+  color: #ffffff;
+  font-weight: 700;
+  box-shadow: 0 4px 18px rgba(78, 139, 231, 0.25);
+}
+
+.custom-checkbox-pill.is-active .checkbox-icon {
+  color: #8ec9ff;
+  transform: scale(1.1);
+}
+
+@media (max-width: 768px) {
+  .sponsorship-checkbox-grid.sponsorship-grid-2cols {
+    grid-template-columns: 1fr;
+  }
+
+  .sponsorship-option-card {
+    padding: 20px 16px;
+  }
+
+  .custom-checkbox-pill {
+    width: 100%;
+    justify-content: flex-start;
+  }
+}
+
 .sponsorship-step-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
