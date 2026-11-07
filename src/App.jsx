@@ -385,26 +385,6 @@ const HELLOASSO_DONATION_URL =
 const HELLOASSO_EMBED_URL =
   'https://www.helloasso.com/associations/passerelles-d-avenir/formulaires/1/widget'
 
-const sponsorshipFormats = [
-  'Scolaire individuel',
-  'Scolaire collectif',
-  'Formation professionnelle individuelle',
-  'Formation professionnelle collective',
-  'Santé et prévention',
-  'Aide alimentaire individuelle',
-  'Équipement individuel',
-  'Projet d’autonomisation individuel',
-]
-
-const sponsorshipGuarantees = [
-  'Un référent clairement identifié pour chaque parrainage',
-  'Une relation encadrée par l’association et la structure locale ou le référent',
-  'La protection des données personnelles et des images',
-  'Un suivi financier transparent et traçable',
-  'Un rapport régulier sur l’utilisation de votre contribution',
-  'Une procédure de signalement en cas de difficulté',
-]
-
 const sponsorshipSteps = [
   { number: '01', title: 'Prenez contact', text: 'Écrivez-nous ou appelez Passerelles d’Avenir.' },
   { number: '02', title: 'Échangeons', text: 'Parlons de vos souhaits et de vos possibilités.' },
@@ -1076,62 +1056,32 @@ function App() {
             </aside>
           </div>
 
-          <div className="sponsorship-section sponsorship-why">
-            <div className="section-heading">
-              <p className="eyebrow">Pourquoi parrainer ?</p>
-              <h3>Votre engagement peut ouvrir une porte.</h3>
-            </div>
-            <div className="sponsorship-copy">
-              <p>
-                Dans certains villages, l’école est à plus d’une heure de marche. Dans certains foyers, un repas par jour n’est pas garanti.
-                Pour beaucoup d’enfants et de jeunes, le talent, l’envie d’apprendre et la force de caractère sont là ; ce qui manque, ce sont
-                les moyens et les passerelles pour les faire grandir.
-              </p>
-              <p>
-                Derrière chaque dossier de parrainage, il y a un enfant qui rêve de tenir un cahier neuf, un adolescent qui veut terminer sa
-                formation, une famille qui espère simplement souffler. Ce ne sont pas des chiffres : ce sont des vies, des visages, des avenirs
-                en construction.
-              </p>
-              <p>
-                Votre parrainage ne gomme pas ces difficultés d’un coup de baguette magique. Mais il ouvre une porte et dit à un enfant :
-                « Tu comptes, et nous croyons en ton avenir. »
-              </p>
-            </div>
-          </div>
-
-          <div className="sponsorship-principle">
-            <p className="eyebrow">Un engagement responsable</p>
-            <h3>Parrainer, ce n’est pas seulement donner.</h3>
-            <p>
-              C’est contribuer dans la durée et avec responsabilité à créer les conditions permettant à un enfant ou à un jeune de grandir,
-              d’apprendre, de développer ses capacités et de construire son avenir. Le parrainage soutient un parcours sans créer de dépendance
-              permanente entre une personne et un donateur.
-            </p>
-            <ul className="sponsorship-checklist">
-              <li><Check size={17} />Soutenir concrètement un enfant ou un jeune dans son parcours</li>
-              <li><Check size={17} />Contribuer à une relation saine, encadrée et transparente</li>
-              <li><Check size={17} />Suivre les progrès réalisés grâce à votre engagement</li>
-              <li><Check size={17} />Participer à la construction d’un avenir autonome</li>
-            </ul>
-          </div>
-
-          <div className="sponsorship-section sponsorship-assurances">
-            <div className="section-heading">
-              <p className="eyebrow">Nos garanties</p>
-              <h3>Un cadre clair, transparent et protecteur.</h3>
-            </div>
-            <ul className="guarantee-grid">
-              {sponsorshipGuarantees.map((guarantee) => (
-                <li key={guarantee}><ShieldCheck size={19} />{guarantee}</li>
-              ))}
-            </ul>
-            <blockquote>
-              « Le parrainage n’est pas une relation de dépendance entre celui qui donne et celui qui reçoit. C’est une passerelle solidaire
-              qui permet de soutenir un parcours, de renforcer des capacités et de contribuer à la construction d’un avenir autonome. »
-            </blockquote>
-          </div>
-
           <div className="sponsorship-section" id="comment-parrainer">
+            <div className="section-heading centered">
+              <p className="eyebrow">Comment ça marche ?</p>
+              <h3>Quatre étapes pour commencer.</h3>
+            </div>
+            <div className="sponsorship-step-grid">
+              {sponsorshipSteps.map(({ number, title, text }) => (
+                <article className="sponsorship-step" key={number}>
+                  <span className="step-number">{number}</span>
+                  <h4>{title}</h4>
+                  <p>{text}</p>
+                </article>
+              ))}
+            </div>
+            <ol className="sponsorship-journey" aria-label="Étapes du suivi d’un parrainage">
+              {sponsorshipJourney.map((stage, index) => (
+                <li key={stage}>
+                  <span>{String(index + 1).padStart(2, '0')}</span>
+                  {stage}
+                  {index < sponsorshipJourney.length - 1 && <ArrowRight size={16} aria-hidden="true" />}
+                </li>
+              ))}
+            </ol>
+          </div>
+
+          <div className="sponsorship-contact" id="devenir-parrain">
             <div className="section-heading centered">
               <p className="eyebrow">Comment ça marche ?</p>
               <h3>Quatre étapes pour commencer.</h3>
