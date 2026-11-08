@@ -1029,29 +1029,6 @@ function App() {
         </section>
 
         <section className="sponsorship" id="parrainage">
-          <div className="sponsorship-hero">
-            <div className="sponsorship-intro">
-              <p className="eyebrow">Parrainage solidaire</p>
-              <h2>Devenez parrain ou marraine</h2>
-              <p className="sponsorship-lead">
-                Quelque part, un enfant, un adolescent attend sa chance. Ensemble, construisons des passerelles qui donnent de l’espoir.
-              </p>
-              <div className="hero-actions">
-                <a className="secondary-button" href="#comment-parrainer">
-                  Voir comment ça marche
-                </a>
-              </div>
-            </div>
-            <aside className="sponsorship-address">
-              <strong>Passerelles d’Avenir</strong>
-              <span>Accueil · Intégration · Autonomie · Contribution</span>
-              <a href="tel:+33777229335">+33 7 77 22 93 35</a>
-              <a href="mailto:passerelleresdavenir.asso@gmail.com">passerelleresdavenir.asso@gmail.com</a>
-              <span>N° RNA : W353026312 · N° SIRET : 109 770 859 00014</span>
-              <span>3 rue Xavier Grall, 37500 Rennes</span>
-            </aside>
-          </div>
-
           <div className="sponsorship-section" id="comment-parrainer">
             <div className="section-heading centered">
               <p className="eyebrow">Modalités de parrainage</p>
