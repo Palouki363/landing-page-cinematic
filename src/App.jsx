@@ -1164,7 +1164,7 @@ function App() {
           <div className="sponsorship-contact" id="devenir-parrain">
             <div className="sponsorship-contact-copy">
               <p className="eyebrow">Premier échange</p>
-              <h3>Vous souhaitez parrainer ou en savoir plus ?</h3>
+              <h3>Vous souhaitez en savoir plus ?</h3>
               <p>
                 Nos équipes sont à votre disposition pour échanger sur le parrainage, répondre à vos questions et définir ensemble la forme d’accompagnement qui correspond à vos souhaits.
               </p>
