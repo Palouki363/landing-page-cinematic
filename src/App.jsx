@@ -619,32 +619,11 @@ function App() {
           </div>
         </section>
 
-        <section className="about-section" id="qui-sommes-nous" aria-labelledby="about-heading">
-          <div className="section-heading centered">
-            <p className="eyebrow">Qui sommes-nous ?</p>
-            <h2 id="about-heading">Passerelles d’Avenir</h2>
-          </div>
-
+        <section className="about-section" id="qui-sommes-nous" aria-label="Qui sommes-nous">
           <div className="about-presentation-box">
             <p className="about-lead-paragraph">
               <strong>Passerelles d’Avenir</strong> est une association loi 1901 qui œuvre à l’accueil et à l’intégration des personnes migrantes et nouvelles arrivantes en France. Nous les accompagnons face aux difficultés sociales, linguistiques, numériques et administratives, afin qu’elles gagnent en autonomie et participent pleinement à la vie sociale, culturelle, citoyenne et économique sur leur territoire d’accueil.
             </p>
-
-            <div className="about-highlights-grid">
-              <article className="about-highlight-card">
-                <span className="about-highlight-badge">Richesse humaine</span>
-                <p>
-                  Nous voyons la diversité des parcours et des cultures comme une richesse pour la société, et nous nous attachons à reconnaître et valoriser les compétences, les talents et le potentiel de chacun.
-                </p>
-              </article>
-
-              <article className="about-highlight-card">
-                <span className="about-highlight-badge">Solidarité internationale</span>
-                <p>
-                  Notre engagement s’étend aussi à l’international : nous contribuons à l’amélioration des conditions de vie, à l’éducation et à la formation des enfants et des jeunes en grande précarité.
-                </p>
-              </article>
-            </div>
 
             <div className="about-values-callout">
               <p>

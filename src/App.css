@@ -1179,13 +1179,13 @@
 .about-section {
   width: min(1200px, calc(100% - 32px));
   margin: 0 auto;
-  padding: 56px 0 32px;
+  padding: 48px 0 24px;
   scroll-margin-top: 100px;
 }
 
 .about-presentation-box {
   max-width: 960px;
-  margin: 32px auto 0;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   gap: 24px;
