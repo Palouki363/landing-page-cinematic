@@ -604,45 +604,6 @@ function App() {
           </div>
         </section>
 
-        <section className="about-section" id="qui-sommes-nous" aria-labelledby="about-heading">
-          <div className="section-heading centered">
-            <p className="eyebrow">Qui sommes-nous ?</p>
-            <h2 id="about-heading">Bâtir des passerelles d’autonomie et de dignité.</h2>
-            <p className="section-subtitle">
-              Passerelles d’Avenir est une association loi 1901 engagée en faveur de l’autonomie, de l’inclusion sociale et du pouvoir d’agir.
-            </p>
-          </div>
-
-          <div className="about-grid">
-            <article className="about-card">
-              <span className="about-badge">Notre vocation</span>
-              <h3>Une solidarité qui émancipe</h3>
-              <p>
-                Face aux freins administratifs, linguistiques ou numériques, nous croyons que l’aide doit favoriser
-                l’autonomie et non créer de dépendance. Nous offrons un accompagnement de proximité, bienveillant et structurant.
-              </p>
-            </article>
-
-            <article className="about-card">
-              <span className="about-badge">Notre mission</span>
-              <h3>Des ponts vers l’avenir</h3>
-              <p>
-                Faciliter l’accès aux droits, aux compétences essentielles (français, numérique), à la culture locale,
-                et développer un parrainage protecteur et responsabilisant pour les enfants et les jeunes.
-              </p>
-            </article>
-
-            <article className="about-card">
-              <span className="about-badge">Nos principes</span>
-              <h3>Un cadre éthique et exigeant</h3>
-              <p>
-                Non-discrimination, laïcité, confidentialité, respect du parcours de chacun et transparence totale dans
-                l’utilisation des moyens mobilisés au service de l’intérêt général.
-              </p>
-            </article>
-          </div>
-        </section>
-
         <section className="values-marquee" aria-label="Les valeurs de Passerelles d’Avenir">
           <div className="marquee-track">
             {[false, true].map((isDuplicate) => (
@@ -655,6 +616,41 @@ function App() {
                 ))}
               </div>
             ))}
+          </div>
+        </section>
+
+        <section className="about-section" id="qui-sommes-nous" aria-labelledby="about-heading">
+          <div className="section-heading centered">
+            <p className="eyebrow">Qui sommes-nous ?</p>
+            <h2 id="about-heading">Passerelles d’Avenir</h2>
+          </div>
+
+          <div className="about-presentation-box">
+            <p className="about-lead-paragraph">
+              <strong>Passerelles d’Avenir</strong> est une association loi 1901 qui œuvre à l’accueil et à l’intégration des personnes migrantes et nouvelles arrivantes en France. Nous les accompagnons face aux difficultés sociales, linguistiques, numériques et administratives, afin qu’elles gagnent en autonomie et participent pleinement à la vie sociale, culturelle, citoyenne et économique sur leur territoire d’accueil.
+            </p>
+
+            <div className="about-highlights-grid">
+              <article className="about-highlight-card">
+                <span className="about-highlight-badge">Richesse humaine</span>
+                <p>
+                  Nous voyons la diversité des parcours et des cultures comme une richesse pour la société, et nous nous attachons à reconnaître et valoriser les compétences, les talents et le potentiel de chacun.
+                </p>
+              </article>
+
+              <article className="about-highlight-card">
+                <span className="about-highlight-badge">Solidarité internationale</span>
+                <p>
+                  Notre engagement s’étend aussi à l’international : nous contribuons à l’amélioration des conditions de vie, à l’éducation et à la formation des enfants et des jeunes en grande précarité.
+                </p>
+              </article>
+            </div>
+
+            <div className="about-values-callout">
+              <p>
+                Guidés par la <strong>solidarité</strong>, la <strong>dignité humaine</strong>, l’<strong>intérêt supérieur de l’enfant</strong>, l’<strong>égalité des chances</strong> et la <strong>non-discrimination</strong>, nous agissons sans distinction d’origine, de sexe, de religion, de situation sociale ou de statut, pour bâtir ensemble un avenir durable.
+              </p>
+            </div>
           </div>
         </section>
 
